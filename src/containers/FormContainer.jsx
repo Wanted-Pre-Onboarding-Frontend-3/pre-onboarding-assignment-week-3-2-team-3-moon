@@ -1,7 +1,7 @@
 import React from "react";
 import Form from "../components/Form";
 
-function FormContainer() {
+const FormContainer = () => {
   return <Form />;
 }
 
