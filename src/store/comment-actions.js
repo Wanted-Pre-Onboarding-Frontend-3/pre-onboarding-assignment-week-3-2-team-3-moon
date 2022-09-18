@@ -10,30 +10,28 @@ export const fetchCommentData = () => {
 
     try {
       const comments = await fetchData();
-      dispatch(commentActions.getOnePageComments(comments));
+      dispatch(commentActions.getAllComments(comments));
     } catch (error) {
       console.error(error);
     }
   };
 };
 
-export const fetchOneCommentData = (commentId) => {
+export const fetchOneCommentData = (pageId) => {
   return async (dispatch) => {
-    const fetchData = async () => {
-      const { data } = await instance.get(`/comments/${commentId}`);
+    const fetchData = async (pageId) => {
+      const { data } = await instance.get(`/comments?_page=${pageId}&_limit=4&_order=desc`);
       return data;
     };
 
     try {
-      const comments = await fetchData();
-      console.log(comments)
+      const comments = await fetchData(pageId);
       dispatch(commentActions.getOnePageComments(comments));
     } catch (error) {
       console.error(error);
     }
   };
 };
-
 
 export const addComment = (newComment) => {
   return async (dispatch) => {

@@ -3,10 +3,12 @@ import { createSlice } from '@reduxjs/toolkit';
 const commentSlice = createSlice({
   name: 'comment',
   initialState: {
+    commentsPerPage: [],
     comments: [],
     pageLength: 0,
+    pageNum: 1,
     isEdit: false,
-    editComment: []
+    editComment: [],
   },
   reducers: {
     setEditMode(state, action) {
@@ -21,10 +23,7 @@ const commentSlice = createSlice({
       state.pageLength = commentsData.length;
     },
     getOnePageComments(state, action) {
-      const commentsData = action.payload;
-      console.log(commentsData);
-      // state.comments = commentsData;
-      // state.pageLength = commentsData.length;
+      state.commentsPerPage = action.payload;
     },
     addComments(state, action) {
       console.log(action.payload);

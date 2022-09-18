@@ -1,29 +1,23 @@
 import React from 'react';
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { instance } from '../api/axios-instance';
-import { deleteComment, fetchCommentData } from '../store/comment-actions';
 import { commentActions } from '../store/comment-slice';
+import { deleteComment } from '../store/comment-actions';
 
 const CommentList = () => {
   const dispatch = useDispatch();
-  const comments = useSelector((state) => state.comment.comments);
+  const comments = useSelector((state) => state.comment.commentsPerPage);
 
   const handleEditMode = (comment) => {
-    const putState = [
-      true,
-      comment
-    ]
-    dispatch(commentActions.setEditMode(putState))
-  }
+    const putState = [true, comment];
+    dispatch(commentActions.setEditMode(putState));
+  };
 
   const handleDelete = async (commentId) => {
     try {
-      dispatch(deleteComment(commentId))
+      dispatch(deleteComment(commentId));
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
   };
 

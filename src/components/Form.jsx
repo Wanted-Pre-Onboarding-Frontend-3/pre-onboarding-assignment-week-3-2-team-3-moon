@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
-import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
-import styled from 'styled-components';
+import { useSelector, useDispatch } from 'react-redux';
 import { addComment, putCommentData } from '../store/comment-actions';
+import styled from 'styled-components';
 
 const Form = () => {
   const dispatch = useDispatch();
@@ -55,7 +53,11 @@ const Form = () => {
       content: comment.content,
       createdAt: date,
     };
-    dispatch(addComment(newComment));
+    await dispatch(addComment(newComment));
+    setComment({
+      author: '',
+      content: '',
+    });
   };
 
   const handlePutSubmit = async (e) => {

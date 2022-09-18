@@ -1,9 +1,7 @@
 import React from 'react';
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
-import styled from 'styled-components';
+import { useDispatch, useSelector } from 'react-redux';
 import { fetchOneCommentData } from '../store/comment-actions';
+import styled from 'styled-components';
 
 function PageList() {
   const dispatch = useDispatch();
@@ -13,8 +11,8 @@ function PageList() {
     pageArray.push(i);
   }
 
-  const handlePageChange = (item) => {
-    dispatch(fetchOneCommentData(item));
+  const handlePageChange = (pageId) => {
+    dispatch(fetchOneCommentData(pageId));
   };
 
   return (
